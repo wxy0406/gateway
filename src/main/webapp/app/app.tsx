@@ -1,7 +1,7 @@
 import 'react-toastify/dist/ReactToastify.css';
 import './app.scss';
 
-import React from 'react';
+import React, { useEffect } from 'react';
 import { connect } from 'react-redux';
 import { Card } from 'reactstrap';
 import { BrowserRouter as Router } from 'react-router-dom';
@@ -19,49 +19,44 @@ import ErrorBoundary from 'app/shared/error/error-boundary';
 import { AUTHORITIES } from 'app/config/constants';
 import AppRoutes from 'app/routes';
 
-const baseHref = document
-  .querySelector('base')
-  .getAttribute('href')
-  .replace(/\/$/, '');
+const baseHref = document.querySelector('base').getAttribute('href').replace(/\/$/, '');
 
 export interface IAppProps extends StateProps, DispatchProps {}
 
-export class App extends React.Component<IAppProps> {
-  componentDidMount() {
-    this.props.getSession();
-    this.props.getProfile();
-  }
+export const App = (props: IAppProps) => {
+  useEffect(() => {
+    props.getSession();
+    props.getProfile();
+  }, []);
 
-  render() {
-    const paddingTop = '60px';
-    return (
-      <Router basename={baseHref}>
-        <div className="app-container" style={{ paddingTop }}>
-          <ToastContainer position={toast.POSITION.TOP_LEFT} className="toastify-container" toastClassName="toastify-toast" />
-          <ErrorBoundary>
-            <Header
-              isAuthenticated={this.props.isAuthenticated}
-              isAdmin={this.props.isAdmin}
-              currentLocale={this.props.currentLocale}
-              onLocaleChange={this.props.setLocale}
-              ribbonEnv={this.props.ribbonEnv}
-              isInProduction={this.props.isInProduction}
-              isSwaggerEnabled={this.props.isSwaggerEnabled}
-            />
-          </ErrorBoundary>
-          <div className="container-fluid view-container" id="app-view-container">
-            <Card className="jh-card">
-              <ErrorBoundary>
-                <AppRoutes />
-              </ErrorBoundary>
-            </Card>
-            <Footer />
-          </div>
+  const paddingTop = '60px';
+  return (
+    <Router basename={baseHref}>
+      <div className="app-container" style={{ paddingTop }}>
+        <ToastContainer position={toast.POSITION.TOP_LEFT} className="toastify-container" toastClassName="toastify-toast" />
+        <ErrorBoundary>
+          <Header
+            isAuthenticated={props.isAuthenticated}
+            isAdmin={props.isAdmin}
+            currentLocale={props.currentLocale}
+            onLocaleChange={props.setLocale}
+            ribbonEnv={props.ribbonEnv}
+            isInProduction={props.isInProduction}
+            isSwaggerEnabled={props.isSwaggerEnabled}
+          />
+        </ErrorBoundary>
+        <div className="container-fluid view-container" id="app-view-container">
+          <Card className="jh-card">
+            <ErrorBoundary>
+              <AppRoutes />
+            </ErrorBoundary>
+          </Card>
+          <Footer />
         </div>
-      </Router>
-    );
-  }
-}
+      </div>
+    </Router>
+  );
+};
 
 const mapStateToProps = ({ authentication, applicationProfile, locale }: IRootState) => ({
   currentLocale: locale.currentLocale,
@@ -69,7 +64,7 @@ const mapStateToProps = ({ authentication, applicationProfile, locale }: IRootSt
   isAdmin: hasAnyAuthority(authentication.account.authorities, [AUTHORITIES.ADMIN]),
   ribbonEnv: applicationProfile.ribbonEnv,
   isInProduction: applicationProfile.inProduction,
-  isSwaggerEnabled: applicationProfile.isSwaggerEnabled
+  isSwaggerEnabled: applicationProfile.isSwaggerEnabled,
 });
 
 const mapDispatchToProps = { setLocale, getSession, getProfile };
@@ -77,7 +72,4 @@ const mapDispatchToProps = { setLocale, getSession, getProfile };
 type StateProps = ReturnType<typeof mapStateToProps>;
 type DispatchProps = typeof mapDispatchToProps;
 
-export default connect(
-  mapStateToProps,
-  mapDispatchToProps
-)(hot(module)(App));
+export default connect(mapStateToProps, mapDispatchToProps)(hot(module)(App));

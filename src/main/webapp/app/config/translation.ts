@@ -49,7 +49,7 @@ export const languages: any = {
   ua: { name: 'Українська' },
   'uz-Cyrl-uz': { name: 'Ўзбекча' },
   'uz-Latn-uz': { name: 'O`zbekcha' },
-  vi: { name: 'Tiếng Việt' }
+  vi: { name: 'Tiếng Việt' },
   // jhipster-needle-i18n-language-key-pipe - JHipster will add/remove languages in this object
 };
 

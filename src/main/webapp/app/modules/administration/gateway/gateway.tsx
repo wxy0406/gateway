@@ -50,7 +50,7 @@ export class GatewayPage extends React.Component<IGatewayPageProps> {
             {route.serviceInstances.map((instance, i) => (
               <tr key={instance.instanceInfo + '-info'}>
                 <td>
-                  <a href={instance.uri} target="_blank">
+                  <a href={instance.uri} target="_blank" rel="noopener noreferrer">
                     {instance.uri}
                   </a>
                 </td>
@@ -117,7 +117,7 @@ export class GatewayPage extends React.Component<IGatewayPageProps> {
 const mapStateToProps = storeState => ({
   routes: storeState.administration.gateway.routes,
   account: storeState.authentication.account,
-  isFetching: storeState.administration.loading
+  isFetching: storeState.administration.loading,
 });
 
 const mapDispatchToProps = { gatewayRoutes };
@@ -125,7 +125,4 @@ const mapDispatchToProps = { gatewayRoutes };
 type StateProps = ReturnType<typeof mapStateToProps>;
 type DispatchProps = typeof mapDispatchToProps;
 
-export default connect(
-  mapStateToProps,
-  mapDispatchToProps
-)(GatewayPage);
+export default connect(mapStateToProps, mapDispatchToProps)(GatewayPage);

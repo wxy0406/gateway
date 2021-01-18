@@ -1,19 +1,19 @@
 import axios from 'axios';
 import { translate, Storage } from 'react-jhipster';
-
+import { isRTL } from 'app/config/translation';
 import { REQUEST, SUCCESS, FAILURE } from 'app/shared/reducers/action-type.util';
 import { getSession } from 'app/shared/reducers/authentication';
 
 export const ACTION_TYPES = {
   UPDATE_ACCOUNT: 'account/UPDATE_ACCOUNT',
-  RESET: 'account/RESET'
+  RESET: 'account/RESET',
 };
 
 const initialState = {
   loading: false,
   errorMessage: null,
   updateSuccess: false,
-  updateFailure: false
+  updateFailure: false,
 };
 
 export type SettingsState = Readonly<typeof initialState>;
@@ -26,25 +26,25 @@ export default (state: SettingsState = initialState, action): SettingsState => {
         ...state,
         errorMessage: null,
         updateSuccess: false,
-        loading: true
+        loading: true,
       };
     case FAILURE(ACTION_TYPES.UPDATE_ACCOUNT):
       return {
         ...state,
         loading: false,
         updateSuccess: false,
-        updateFailure: true
+        updateFailure: true,
       };
     case SUCCESS(ACTION_TYPES.UPDATE_ACCOUNT):
       return {
         ...state,
         loading: false,
         updateSuccess: true,
-        updateFailure: false
+        updateFailure: false,
       };
     case ACTION_TYPES.RESET:
       return {
-        ...initialState
+        ...initialState,
       };
     default:
       return state;
@@ -54,13 +54,13 @@ export default (state: SettingsState = initialState, action): SettingsState => {
 // Actions
 const apiUrl = 'services/uaa/api/account';
 
-export const saveAccountSettings = account => async (dispatch, getState) => {
+export const saveAccountSettings: (account: any) => void = account => async dispatch => {
   await dispatch({
     type: ACTION_TYPES.UPDATE_ACCOUNT,
     payload: axios.post(apiUrl, account),
     meta: {
-      successMessage: translate('settings.messages.success')
-    }
+      successMessage: translate('settings.messages.success'),
+    },
   });
 
   if (Storage.session.get(`locale`)) {
@@ -68,8 +68,10 @@ export const saveAccountSettings = account => async (dispatch, getState) => {
   }
 
   await dispatch(getSession());
+
+  document.querySelector('html').setAttribute('dir', isRTL(account.langKey) ? 'rtl' : 'ltr');
 };
 
 export const reset = () => ({
-  type: ACTION_TYPES.RESET
+  type: ACTION_TYPES.RESET,
 });

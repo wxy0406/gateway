@@ -13,10 +13,11 @@
     "indicator": {
       "discoveryComposite": "Discovery Composite",
       "refreshScope": "Вобласць абнаўлення мікрасэрвіса",
-      "configServer": "Сервер канфігурацыі мікрасэрвіса",
+      "clientConfigServer": "Сервер канфігурацыі мікрасэрвіса",
       "hystrix": "Hystrix",
       "diskSpace": "Месца на дыску",
       "mail": "Email",
+      "ping": "Application",
       "db": "База дадзеных"
     },
     "table": {
