@@ -13,10 +13,11 @@
     "indicator": {
       "discoveryComposite": "Discovery Composite",
       "refreshScope": "Межі оновлення мікросервіса",
-      "configServer": "Конфігураційний сервер мікросервіса",
+      "clientConfigServer": "Конфігураційний сервер мікросервіса",
       "hystrix": "Hystrix",
       "diskSpace": "Місце на диску",
       "mail": "Електронна пошта",
+      "ping": "Application",
       "db": "База даних"
     },
     "table": {

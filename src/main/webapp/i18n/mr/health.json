@@ -13,10 +13,11 @@
     "indicator": {
       "discoveryComposite": "Discovery Composite",
       "refreshScope": "Microservice Refresh Scope",
-      "configServer": "Microservice Config Server",
+      "clientConfigServer": "Microservice Config Server",
       "hystrix": "Hystrix",
       "diskSpace": "डिस्क स्थान",
       "mail": "ईमेल ",
+      "ping": "Application",
       "db": "Database"
     },
     "table": {

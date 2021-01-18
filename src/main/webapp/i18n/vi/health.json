@@ -13,10 +13,11 @@
     "indicator": {
       "discoveryComposite": "Thành phần tìm kiếm dịch vụ",
       "refreshScope": "Phạm vị làm mới Microservice",
-      "configServer": "Trung tâm cấu hình Microservice",
+      "clientConfigServer": "Trung tâm cấu hình Microservice",
       "hystrix": "Hystrix",
       "diskSpace": "Dung lượng trống",
       "mail": "Email",
+      "ping": "Application",
       "db": "Cơ sở dữ liệu"
     },
     "table": {

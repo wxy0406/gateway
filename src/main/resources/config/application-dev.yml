@@ -36,6 +36,7 @@ spring:
   devtools:
     restart:
       enabled: true
+      additional-exclude: static/**
     livereload:
       enabled: false # we use Webpack dev server + BrowserSync for livereload
   jackson:
@@ -43,7 +44,7 @@ spring:
       indent-output: true
   datasource:
     type: com.zaxxer.hikari.HikariDataSource
-    url: jdbc:mysql://localhost:3306/gateway?useUnicode=true&characterEncoding=utf8&useSSL=false&useLegacyDatetimeCode=false&serverTimezone=UTC
+    url: jdbc:mysql://localhost:3306/gateway?useUnicode=true&characterEncoding=utf8&useSSL=false&useLegacyDatetimeCode=false&serverTimezone=UTC&createDatabaseIfNotExist=true
     username: root
     password: Wang11572!
     hikari:
@@ -55,15 +56,7 @@ spring:
         prepStmtCacheSqlLimit: 2048
         useServerPrepStmts: true
   jpa:
-    database-platform: org.hibernate.dialect.MySQL5InnoDBDialect
-    database: MYSQL
     show-sql: true
-    properties:
-      hibernate.id.new_generator_mappings: true
-      hibernate.connection.provider_disables_autocommit: true
-      hibernate.cache.use_second_level_cache: true
-      hibernate.cache.use_query_cache: false
-      hibernate.generate_statistics: false
   liquibase:
     # Remove 'faker' if you do not want the sample data to be loaded automatically
     contexts: dev, faker
@@ -122,7 +115,6 @@ jhipster:
       client-id: internal
       client-secret: internal
   mail: # specific JHipster mail property, for standard properties see MailProperties
-    from: gateway@localhost
     base-url: http://127.0.0.1:8080
   metrics:
     logs: # Reports metrics in the logs
@@ -135,6 +127,8 @@ jhipster:
       host: localhost
       port: 5000
       queue-size: 512
+  audit-events:
+    retention-period: 30 # Number of days before audit events are deleted.
 oauth2:
   signature-verification:
     public-key-endpoint-uri: http://uaa/oauth/token_key

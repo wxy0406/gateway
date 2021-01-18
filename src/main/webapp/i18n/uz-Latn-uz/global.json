@@ -64,13 +64,13 @@
       "validate": {
         "newpassword": {
           "required": "Parol kiritilishi zarur.",
-          "minlength": "Parol uzunligi kamida 5 harfdan iborat bo`lsin",
+          "minlength": "Parol uzunligi kamida 4 harfdan iborat bo`lsin",
           "maxlength": "Parol 50 harfdan uzun bo`lmasin",
           "strength": "Parol murakkabligi:"
         },
         "confirmpassword": {
           "required": "Parol tasdig`i kiritilishi zarur.",
-          "minlength": "Parol tasdig`i uzunligi kamida 5 harfdan iborat bo`lsin",
+          "minlength": "Parol tasdig`i uzunligi kamida 4 harfdan iborat bo`lsin",
           "maxlength": "Parol tasdig`i 50 harfdan uzun bo`lmasin"
         },
         "email": {
@@ -130,7 +130,11 @@
     "userexists": "Foydalanuvchi tizimda mavjud!",
     "emailexists": "Email allaqachon mavjud!",
     "idexists": "Yangi {{entityName}} IDsi bo`lmasligi kerak",
-    "idnull": "Noto`g`ri ID"
+    "idnull": "Noto`g`ri ID",
+    "file": {
+      "could.not.extract": "Could not extract file",
+      "not.image": "File was expected to be an image but was found to be \"{{ fileType }}\""
+    }
   },
   "footer": "Sahifa tag qismi"
 }

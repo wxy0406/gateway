@@ -13,10 +13,11 @@
     "indicator": {
       "discoveryComposite": "Discovery Composite",
       "refreshScope": "Қайта юклаш доираси",
-      "configServer": "Microservice Config Server",
+      "clientConfigServer": "Microservice Config Server",
       "hystrix": "Hystrix",
       "diskSpace": "Дискдаги жой",
       "mail": "Email",
+      "ping": "Application",
       "db": "Маълумотлар базаси"
     },
     "table": {

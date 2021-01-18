@@ -13,10 +13,11 @@
     "indicator": {
       "discoveryComposite": "Discovery Composite",
       "refreshScope": "Mikroservis Refresh Scope",
-      "configServer": "Mikroservis Konfiguracioni Server",
+      "clientConfigServer": "Mikroservis Konfiguracioni Server",
       "hystrix": "Hystrix",
       "diskSpace": "Veličina diska",
       "mail": "Email",
+      "ping": "Application",
       "db": "SQL baza podataka"
     },
     "table": {
